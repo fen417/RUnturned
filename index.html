@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dawn of Larston Wiki</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #121212;
+            color: #eaeaea;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background-color: #1e1e1e;
+            padding: 20px 0;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+        
+        .tab-container {
+            background-color: #1e1e1e;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tabs {
+            display: flex;
+            overflow-x: auto;
+            border-bottom: 2px solid #2e2e2e;
+            background-color: #252525;
+        }
+        
+        .tab-btn {
+            padding: 15px 25px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #aaa;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            min-width: max-content;
+        }
+        
+        .tab-btn:hover {
+            background-color: #333;
+            color: #fff;
+        }
+        
+        .tab-btn.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 25px;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        h1, h2, h3 {
+            margin-bottom: 15px;
+            color: #4CAF50;
+        }
+        
+        p {
+            margin-bottom: 15px;
+        }
+        
+        .mod-card {
+            background-color: #252525;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .mod-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .mod-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #4CAF50;
+        }
+        
+        .mod-info {
+            display: flex;
+            margin-bottom: 15px;
+        }
+        
+        .mod-image {
+            width: 80px;
+            height: 80px;
+            background-color: #333;
+            border-radius: 4px;
+            margin-right: 15px;
+            overflow: hidden;
+        }
+        
+        .mod-details {
+            flex: 1;
+        }
+        
+        .mod-description {
+            color: #ccc;
+        }
+		/* Дополнительные стили для новых элементов */
+.features-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.features-section .mod-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.features-section .mod-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.view-more-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 14px;
+    align-self: flex-end;
+    margin-top: auto;
+}
+
+.view-more-btn:hover {
+    background-color: #3e8e41;
+}
+
+/* Для кнопок "Подробнее" на карточках */
+.mod-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.mod-card button {
+    margin-top: 10px;
+    align-self: flex-start;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.mod-card button:hover {
+    background-color: #3e8e41;
+}
+        
+        footer {
+            margin-top: 40px;
+            padding: 20px 0;
+            text-align: center;
+            background-color: #1a1a1a;
+            color: #777;
+            font-size: 14px;
+        }
+        
+        code {
+            background-color: #2a2a2a;
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+        
+        img {
+            max-width: 100%;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">Dawn of Larston Forge Server 1.20.1</div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="tab-container">
+            <div class="tabs">
+                <button class="tab-btn active" onclick="openTab('home')">Главная</button>
+                <button class="tab-btn" onclick="openTab('installation')">Установка</button>
+                <button class="tab-btn" onclick="openTab('tech-mods')">Общие моды</button>
+                <button class="tab-btn" onclick="openTab('magic-mods')">Магические моды</button>
+                <button class="tab-btn" onclick="openTab('world-mods')">Исследование мира</button>
+                <button class="tab-btn" onclick="openTab('combat-mods')">Боевые моды</button>
+                <button class="tab-btn" onclick="openTab('boss-mods')">Боссы</button>
+                <button class="tab-btn" onclick="openTab('utility-mods')">Утилиты</button>
+            </div>
+            
+<div id="home" class="tab-content active">
+    <h1>Добро пожаловать в вики нашего сервера!</h1>
+    <p>Здесь вы найдете подробные руководства по самым популярным модам, входящим в состав пакета, советы по использованию и решения распространенных проблем.</p>
+    
+    <h2>О сервере</h2>
+    <p>Наш сервер создан для тех, кто жаждет глубокого и разнообразного игрового опыта. Мы тщательно отобрали и настроили моды, чтобы предложить вам уникальный игровой мир с множеством возможностей. В мире сервера прописан глубокий лор, раскрывающий себя в описании квестов и диалогах с NPC.</p>
+    
+    <div class="features-section">
+        <div class="mod-card">
+            <div class="mod-title">Эпические сражения</div>
+            <div class="mod-info">
+                <div class="mod-details">
+                    <p class="mod-description">Наш модпак предлагает десятки уникальных боссов с разнообразными механиками и способностями. Каждый босс требует особого подхода и стратегии, что делает каждую битву незабываемым испытанием вашего мастерства и подготовки.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mod-card">
+            <div class="mod-title">Исследование подземелий</div>
+            <div class="mod-info">
+                <div class="mod-details">
+                    <p class="mod-description">Погрузитесь в исследование многочисленных подземелий разной сложности. Каждое подземелье наполнено уникальными монстрами, головоломками, ловушками и сокровищами, которые ждут только самых храбрых искателей приключений.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mod-card">
+            <div class="mod-title">Магические системы</div>
+            <div class="mod-info">
+                <div class="mod-details">
+                    <p class="mod-description">Изучайте различные школы магии, создавайте могущественные заклинания и ритуалы. Каждая магическая система предлагает свой собственный стиль игры с уникальными заклинаниями, артефактами и квестами.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mod-card">
+            <div class="mod-title">Домашний декор и строительство</div>
+            <div class="mod-info">
+                <div class="mod-details">
+                    <p class="mod-description">Создавайте уютные дома и впечатляющие базы с сотнями новых декоративных блоков, мебели и элементов интерьера. От простых функциональных предметов до изысканных украшений — вы найдёте всё необходимое для создания идеального дома.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mod-card">
+            <div class="mod-title">Мистические артефакты</div>
+            <div class="mod-info">
+                <div class="mod-details">
+                    <p class="mod-description">Собирайте и улучшайте редкие артефакты, которые наделят вас особыми способностями. Каждый артефакт можно модифицировать и улучшать, создавая уникальные комбинации эффектов, соответствующие вашему стилю игры.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mod-card">
+            <div class="mod-title">Оружейное разнообразие</div>
+            <div class="mod-info">
+                <div class="mod-details">
+                    <p class="mod-description">Насладитесь обновленной боевой механикой с десятками видов нового холодного оружия. Мечи, топоры, кинжалы, копья и множество других типов оружия, каждое с уникальными свойствами, позволят вам выбрать идеальный стиль боя.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2>Популярные моды</h2>
+    <div class="mod-card">
+        <div class="mod-title">Iron Spells and Spellbooks</div>
+        <div class="mod-info">
+            <div class="mod-image">
+                <img src="images/isasb.png" alt="Iron Spells and Spellbooks" />
+            </div>
+            <div class="mod-details">
+                <p class="mod-description">Модифицированная версия мода, добавляющая множество заклинаний разных школ магии. В нашей модификации добавлены новые уникальные заклинания.</p>
+            </div>
+        </div>
+        <button onclick="openTab('magic-mods')" class="view-more-btn">Подробнее</button>
+    </div>
+    
+    <div class="mod-card">
+        <div class="mod-title">Dawn of Larston: Time Paradox</div>
+        <div class="mod-info">
+            <div class="mod-image">
+                <img src="/images/dol.png" alt="Dawn of Larston: Time Paradox" />
+            </div>
+            <div class="mod-details">
+                <p class="mod-description">Самописный мод, добавляющий новое измерение и могущественного босса. Эпическое испытание для самых смелых игроков.</p>
+            </div>
+        </div>
+        <button onclick="openTab('boss-mods')" class="view-more-btn">Подробнее</button>
+    </div>
+</div>
+            
+            <div id="tech-mods" class="tab-content">
+                <h1>Общие моды</h1>
+                <p>В этом разделе представлены ключевые моды пакета с подробными руководствами.</p>
+                
+                <div class="mod-card">
+                    <div class="mod-title">Fen's Simple Kits</div>
+                    <div class="mod-info">
+                        <div class="mod-image">
+                            <img src="/images/sk.png" alt="Fen's Simple Kits" />
+                        </div>
+                        <div class="mod-details">
+                            <p class="mod-description">Позволяет игрокам получать наборы предметов с помощью простых команд.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Использование Fen's Simple Kits</h3>
+                    <p>Для получения наборов используйте команду <code>/fkit</code>:</p>
+                    <ul>
+                        <li><code>/fkit list</code> - просмотр доступных наборов</li>
+                        <li><code>/fkit starter</code> - получение стартового набора</li>
+                        <li><code>/fkit miner</code> - набор для шахтёра</li>
+                        <li><code>/fkit warrior</code> - боевой набор</li>
+                    </ul>
+                    
+                    <h3>Доступные киты</h3>
+                    <ul>
+                        <li><strong>starter</strong> - базовые инструменты и припасы</li>
+                        <li><strong>miner</strong> - улучшенные инструменты для шахтёров (доступен раз в 24 часа)</li>
+                        <li><strong>warrior</strong> - базовое оружие и броня (доступен раз в 48 часов)</li>
+                        <li><strong>mage</strong> - начальные предметы для магии (доступен раз в 48 часов)</li>
+                        <li><strong>food</strong> - запас еды (доступен раз в 12 часов)</li>
+                    </ul>
+                </div>
+                
+                <div class="mod-card">
+                    <div class="mod-title">FTB Quests</div>
+                    <div class="mod-info">
+                        <div class="mod-image">
+                            <img src="/images/ftbq.png" alt="FTB Quests" />
+                        </div>
+                        <div class="mod-details">
+                            <p class="mod-description">Система квестов, помогающая игрокам изучать моды и прогрессировать в игре.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Использование FTB Quests</h3>
+                    <p>Мод добавляет обширную систему квестов, которые помогут вам ближе познакомиться со всеми модами пакета:</p>
+                    <ul>
+                        <li>Нажмите <code>~</code> для открытия интерфейса квестов</li>
+                        <li>Квесты разделены на главы по тематике различных модов</li>
+                        <li>За выполнение квестов можно получить ценные награды</li>
+                        <li>Следуйте основной линии квестов для последовательного изучения модов</li>
+                    </ul>
+                    
+                    <h3>Главы квестов</h3>
+                    <ul>
+                        <li><strong>Первые шаги</strong> - основы выживания</li>
+                        <li><strong>Магия</strong> - изучение магических модов</li>
+                        <li><strong>Боевая система</strong> - освоение Epic Fight и других</li>
+                        <li><strong>Исследование мира</strong> - квесты на исследование новых биомов и структур</li>
+                        <li><strong>Боссы</strong> - испытания и подготовка к боссам</li>
+                    </ul>
+                </div>
+                
+                <div class="mod-card">
+                    <div class="mod-title">Custom NPC (форк)</div>
+                    <div class="mod-info">
+                        <div class="mod-image">
+                            <img src="/images/cnpc.png" alt="Custom NPC" />
+                        </div>
+                        <div class="mod-details">
+                            <p class="mod-description">Добавляет различных NPC в мир игры для создания более живой и интерактивной среды.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Типы NPC</h3>
+                    <ul>
+                        <li><strong>Торговцы</strong> - обменивают предметы</li>
+                        <li><strong>Квестодатели</strong> - предлагают задания</li>
+                        <li><strong>Стражники</strong> - защищают поселения от враждебных мобов</li>
+                        <li><strong>Жители</strong> - добавляют атмосферу в поселения</li>
+                    </ul>
+                    
+                    <h3>Взаимодействие с NPC</h3>
+                    <p>Для взаимодействия с NPC кликните правой кнопкой мыши по ним. В зависимости от типа NPC, вы получите доступ к торговле, квестам или диалогам.</p>
+                </div>
+                
+                <div class="mod-card">
+                    <div class="mod-title">Fen's RPG Titles</div>
+                    <div class="mod-info">
+                        <div class="mod-image">
+                            <img src="/images/rpgt.png" alt="Fen's RPG Titles" />
+                        </div>
+                        <div class="mod-details">
+                            <p class="mod-description">Добавляет систему кастомных титулов для игроков.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Система титулов</h3>
+                    <p>Мод позволяет игрокам получать и отображать уникальные титулы. </p>
+                    
+                    <h3>Получение титулов</h3>
+                    <p>Титулы можно получить различными способами:</p>
+                    <ul>
+                        <li>За выполнение определённых квестов</li>
+                        <li>За победу над боссами</li>
+                        <li>За участие в ивентах</li>
+                        <li>За особые достижения в игре</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div id="magic-mods" class="tab-content">
+                <h1>Магические моды</h1>
+                <p>Здесь представлены все магические моды пакета и руководства по их использованию.</p>
+                
+                <div class="mod-card">
+    <div class="mod-title">Iron's Spells 'n Spellbooks</div>
+    <div class="mod-info">
+        <div class="mod-image">
+            <img src="/images/isasb.png" alt="Iron's Spells 'n Spellbooks" />
+        </div>
+        <div class="mod-details">
+            <p class="mod-description">
+                Iron's Spells 'n Spellbooks — это мод, вдохновлённый классическими RPG, который добавляет в Minecraft продвинутую систему заклинаний, магических предметов, врагов, структур и боссов. Он предлагает полноценную магическую прогрессию, прокачку, исследования и сражения. В этой модифицированной версии также добавлена уникальная авторская школа магии.
+            </p>
+        </div>
+    </div>
+    
+    <h3>Основные особенности</h3>
+    <ul>
+        <li>Более 95 уникальных и улучшаемых заклинаний</li>
+        <li>2 мощных босса-мага</li>
+        <li>8 новых враждебных и дружественных существ</li>
+        <li>11 комплектов магической брони</li>
+        <li>10 случайно генерируемых структур и подземелий</li>
+        <li>Система чар для магического оружия и экипировки</li>
+        <li>Гибкая настройка геймплея и баланса</li>
+        <li>Совместимость с модами JEI, Apotheosis, Better Combat, Tetra и другими</li>
+    </ul>
+    
+    <h3>Начало пути мага</h3>
+    <p>Чтобы стать магом, выполните следующие шаги:</p>
+    <ol>
+        <li>Создайте или найдите <strong>Arcane Workbench</strong> (Магический верстак)</li>
+        <li>Создайте свою первую <strong>книгу заклинаний</strong> (Spellbook)</li>
+        <li>Получите <strong>свитки заклинаний</strong> (Spell Scrolls) из сундуков или у торговцев</li>
+    </ol>
+    
+    <h3>Школы магии</h3>
+    <ul>
+        <li><strong>Огненная магия (Fire)</strong> — урон и эффект поджигания</li>
+        <li><strong>Ледяная магия (Ice)</strong> — замедление и контроль противников</li>
+        <li><strong>Магия природы (Nature)</strong> — защита, лечение и работа с ядами</li>
+        <li><strong>Магия шторма (Storm)</strong> — мобильность, рывки, воздушные атаки</li>
+        <li><strong>Кровавая магия (Blood)</strong> — жертвы, восстановление через урон</li>
+        <li><strong>Святая магия (Holy)</strong> — поддержка, исцеление и священные заклинания</li>
+        <li><strong>Магия порчи (Corruption)</strong> — ослабление, болезни и яд</li>
+        <li><strong>Запретная магия (Eldritch)</strong> — призывы, древние знания и тьма</li>
+    </ul>
+    
+    <h3>Эксклюзивная школа</h3>
+    <p>В данной версии мода представлена уникальная, самописная школа магии:</p>
+    <ul>
+        <li><strong>Школа времени</strong> — позволяет манипулировать временем: замедлять, ускорять и применять временные искажения</li>
+    </ul>
+    
+    <h3>Улучшение и развитие</h3>
+    <p>Развивайте свои магические навыки и усиливайте заклинания:</p>
+    <ul>
+        <li>Улучшайте заклинания на магическом верстаке</li>
+        <li>Собирайте редкие руны и артефакты для усиления</li>
+        <li>Создавайте мощные комбинации заклинаний и эффектов</li>
+    </ul>
+</div>
+</div>
+            
+            <div id="world-mods" class="tab-content">
+                <h1>Исследование мира</h1>
+                <p>Моды, обогащающие исследование и добавляющие новые структуры и биомы в мир Minecraft.</p>
+                
+                <div class="mod-card">
+                    <div class="mod-title">YUNG's Mods Collection</div>
+                    <div class="mod-info">
+                        <div class="mod-image">
+                            <img src="/images/y.png" alt="YUNG's Mods" />
+                        </div>
+                        <div class="mod-details">
+                            <p class="mod-description">Набор модов, улучшающих генерацию структур в мире.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Включенные моды YUNG's</h3>
+                    <ul>
+                        <li><strong>Better Nether Fortress</strong> - улучшенные крепости Нижнего мира</li>
+                        <li><strong>Better Mineshafts</strong> - более интересные и опасные заброшенные шахты</li>
+                        <li><strong>Better Strongholds</strong> - переработанные крепости Края</li>
+                        <li><strong>Better Dungeons</strong> - разнообразные подземные данжи</li>
+                        <li><strong>Better Desert Temples</strong> - улучшенные храмы в пустыне</li>
+                        <li><strong>Better Witch Huts</strong> - более атмосферные хижины ведьм</li>
+                    </ul>
+                    
+                    <h3>Особенности</h3>
+                    <p>Все структуры сохраняют оригинальную атмосферу Minecraft, но становятся более интересными для исследования, содержат уникальную добычу и новые испытания.</p>
+                </div>
+                
+                <div class="mod-card">
+                    <div class="mod-title">Waystones</div>
+                    <div class="mod-info">
+                        <div class="mod-image">
+                            <img src="/images/ws.png" alt="Waystones" />
+                        </div>
+                        <div class="mod-details">
+                            <p class="mod-description">Система путевых камней для быстрого перемещения между освоенными территориями.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Использование Waystones</h3>
+                    <ul>
+                        <li>Путевые камни можно найти в деревнях и других структурах</li>
+                        <li>Вы можете создать собственные путевые камни</li>
+                        <li>После активации камня вы можете телепортироваться к нему с любого другого камня</li>
+                        <li>Свитки возврата позволяют телепортироваться к путевым камням из любой точки мира</li>
+                    </ul>
+                </div>
+                
+                <div class="mod-card">
+                    <div class="mod-title">Travelers Titles</div>
+                    <div class="mod-info">
+                        <div class="mod-image">
+                            <img src="/images/tt.png" alt="Travelers Titles" />
+                        </div>
+                        <div class="mod-details">
+                            <p class="mod-description">Система отслеживания исследований биомов и структур мира.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Функции мода</h3>
+                    <ul>
+                        <li>Отображение названий биомов при входе в них</li>
+                        <li>Ведение журнала посещённых мест</li>
+                    </ul>
+                </div>
+                
+                <div class="mod-card">
+                    <div class="mod-title">Biomes O' Plenty</div>
+                    <div class="mod-info">
+                        <div class="mod-image">
+                            <img src="/images/bop.png" alt="Biomes O' Plenty" />
+                        </div>
+                        <div class="mod-details">
+                            <p class="mod-description">Добавляет множество новых биомов во все измерения игры.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Новые биомы</h3>
+                    <p>Мод добавляет более 50 новых биомов, среди которых:</p>
+                    <ul>
+                        <li><strong>Радужный лес</strong> - яркие деревья и уникальные растения</li>
+                        <li><strong>Коралловый риф</strong> - подводный биом с богатой флорой и фауной</li>
+                        <li><strong>Мистический лес</strong> - таинственный лес с магической аурой</li>
+                        <li><strong>Вулканические земли</strong> - опасный биом с лавой и пеплом</li>
+                        <li><strong>Сакура-лес</strong> - цветущие розовые деревья</li>
+                    </ul>
+                </div>
+                
+                <div class="mod-card">
+                    <div class="mod-title">Dungeons and Taverns</div>
+                    <div class="mod-info">
+                        <div class="mod-image">
+                            <img src="/images/вте.png" alt="Dungeons and Taverns" />
+                        </div>
+                        <div class="mod-details">
+                            <p class="mod-description">Мод добавляет в Minecraft новые структуры, такие как сторожевые башни и таверны, а также подземелья, включая шахты на окраине пустошей и укрытия илледжеров. Он также перерабатывает некоторые стандартные структуры, изменяя их генерацию и содержимое.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Новые структуры</h3>
+                    <p>Мод вводит разнообразные структуры, гармонично вписывающиеся в игровой мир:</p>
+                    <ul>
+                        <li><strong>Сторожевые башни</strong> — наблюдательные посты, предоставляющие стратегический обзор.</li>
+                        <li><strong>Таверны</strong> — места отдыха с возможностью взаимодействия с NPC и получения заданий.</li>
+                        <li><strong>Шахты на окраине пустошей</strong> — заброшенные горные выработки с уникальными ресурсами.</li>
+                        <li><strong>Укрытия илледжеров</strong> — базы врагов, наполненные испытаниями и наградами.</li>
+                    </ul>
+                    
+                    <h3>Изменения стандартных структур</h3>
+                    <p>Мод перерабатывает существующие структуры Minecraft:</p>
+                    <ul>
+                        <li>Изменена генерация деревень, возвращая их к стилю до версии 1.14.</li>
+                        <li>Обновлённый лут в сундуках подземелий, включая новые зачарования и предметы.</li>
+                        <li>Добавлены новые зачарования, такие как «Антидот», «Проклятие проводимости», «Призрачный» и «Гравитация», каждое с уникальными эффектами и ограничениями.</li>
+                    </ul>
+                    
+                </div>
+                
+                
+                <div class="mod-card">
+                    <div class="mod-title">End Remastered</div>
+                    <div class="mod-info">
+                        <div class="mod-image">
+                            <img src="/images/endrem.png" alt="End Remastered" />
+                        </div>
+                        <div class="mod-details">
+                            <p class="mod-description">Полностью переработанная система достижения измерения Края.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Новая система Глаз Края</h3>
+                    <p>Вместо стандартных глаз Края необходимо найти 12 уникальных глаз в различных частях мира:</p>
+                    <ul>
+                        <li>Каждый глаз имеет свое место появления</li>
+                        <li>Глаза спрятаны в разных структурах и измерениях</li>
+                        <li>Для активации портала необходимы все 12 типов глаз</li>
+                    </ul>
+                    <h3>Обновленный Край</h3>
+                    <p>Измерение Края также получило обновления:</p>
+                    <ul>
+                        <li>Новые структуры и биомы в Крае</li>
+                        <li>Дополнительные испытания перед финальным боссом</li>
+                        <li>Улучшенная система награды за прохождение</li>
+                    </ul>
+                </div>
+                
+                <div class="mod-card">
+                    <div class="mod-title">Alex's Caves</div>
+                    <div class="mod-info">
+                        <div class="mod-image">
+                            <img src="/images/ac.png" alt="Alex's Caves" />
+                        </div>
+                        <div class="mod-details">
+                            <p class="mod-description">Добавляет обширную систему подземных биомов и пещер.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Новые подземные биомы</h3>
+                    <ul>
+                        <li><strong>Грибные пещеры</strong> - биом с гигантскими светящимися грибами</li>
+                        <li><strong>Лавовые пещеры</strong> - опасные пещеры с уникальными минералами</li>
+                        <li><strong>Кристальные пещеры</strong> - красивые пещеры с растущими кристаллами</li>
+                        <li><strong>Подземные джунгли</strong> - затерянные джунгли глубоко под землей</li>
+                        <li><strong>Древние руины</strong> - остатки древних цивилизаций</li>
+                    </ul>
+                    
+                    <h3>Новые существа</h3>
+                    <p>Мод добавляет уникальных подземных существ:</p>
+                    <ul>
+                        <li>Примитивные подземные создания</li>
+                        <li>Охранники древних руин</li>
+                        <li>Миролюбивые светящиеся существа</li>
+                        <li>Опасные хищники глубин</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div id="combat-mods" class="tab-content">
+                <h1>Боевые моды</h1>
+                <p>Моды, улучшающие боевую систему и добавляющие новое оружие.</p>
+                
+                <div class="mod-card">
+                    <div class="mod-title">Epic Fight</div>
+                    <div class="mod-info">
+                        <div class="mod-image">
+                            <img src="/images/efm.png" alt="Epic Fight" />
+                        </div>
+                        <div class="mod-details">
+                            <p class="mod-description">Полностью переработанная система боя с комбо-атаками и анимациями.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Основы боевой системы</h3>
+                    <ul>
+                        <li>Разные типы оружия имеют уникальные стили боя</li>
+                        <li>Комбинации атак для выполнения особых приёмов</li>
+                        <li>Система парирования и уклонения от атак</li>
+                        <li>Специальные атаки и навыки для разных классов оружия</li>
+                    </ul>
+                    
+                    <h3>Типы оружия</h3>
+                    <ul>
+                        <li><strong>Мечи</strong> - быстрые и универсальные</li>
+                        <li><strong>Двуручные мечи</strong> - медленные, но мощные</li>
+                        <li><strong>Кинжалы</strong> - очень быстрые атаки и критические удары</li>
+                        <li><strong>Копья</strong> - большой радиус атаки</li>
+                        <li><strong>Молоты</strong> - оглушение и отбрасывание противников</li>
+                    </ul>
+                    
+                    <h3>Управление</h3>
+                    <p>Основные комбинации клавиш:</p>
+                    <ul>
+                        <li><code>ЛКМ</code> - обычная атака</li>
+                        <li><code>ПКМ</code> - блок/парирование</li>
+                        <li><code>ЛКМ + ПКМ</code> - специальная атака</li>
+                        <li><code>ЛКМ + Shift</code> - сильная атака</li>
+                        <li><code>Пробел (двойной)</code> - уклонение</li>
+                    </ul>
+                </div>
+                
+                <div class="mod-card">
+                    <div class="mod-title">Weapons of Miracles</div>
+                    <div class="mod-info">
+                        <div class="mod-image">
+                            <img src="/images/wom.png" alt="Weapons of Miracles" />
+                        </div>
+                        <div class="mod-details">
+                            <p class="mod-description">Дополнение для мода Epic Fight, добавляющее новое оружие, навыки, броню и зачарования с уникальными анимациями и механиками.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Новое оружие</h3>
+                    <p>Мод добавляет 10 видов оружия (11 в версии 1.20), каждое с уникальными анимациями и поведением. Оружие можно найти в различных структурах мира или создать:</p>
+                    <ul>
+                        <li><strong>Agony</strong>: шанс 10% найти в сундуках спавнеров в подземельях.</li>
+                        <li><strong>Torment</strong>: шанс 5% найти в аванпостах разбойников или 10% в особняках леса.</li>
+                        <li><strong>Ruine</strong>: шанс 10% найти в коридорах и перекрёстках крепостей.</li>
+                        <li><strong>Посохи</strong>: крафтятся из дерева до незерита.</li>
+                        <li><strong>Секиры</strong>: крафтятся из железа до незерита.</li>
+                        <li><strong>EnderBlaster</strong>: шанс 5% найти в городах Края.</li>
+                        <li><strong>Antitheus</strong>: создаётся с помощью Demon Seal и звезды Незера на кузнечном столе.</li>
+                        <li><strong>Satsujin</strong>: создаётся с помощью Demon Seal и катаны (Uchigatana) из Epic Fight.</li>
+                        <li><strong>Herrscher</strong>: меч и щит можно найти в подводных руинах (шанс 2% в малых и 5% в больших).</li>
+                        <li><strong>Moonless</strong>: шанс 5% найти в сундуках пустынных храмов.</li>
+                        <li><strong>Solar</strong>: создаётся с помощью книги вечного огня (выпадает из ифритов) и 5 незеритовых слитков.</li>
+                    </ul>
+                    
+                    <h3>Новые навыки</h3>
+                    <p>Мод добавляет 18 новых навыков (27 в версии 1.20), которые выпадают с различных мобов:</p>
+                    <ul>
+                        <li>3 навыка блока (5 в версии 1.20).</li>
+                        <li>5 навыков уклонения (7 в версии 1.20).</li>
+                        <li>10 пассивных навыков.</li>
+                        <li>(3 идентификационных навыка в версии 1.20).</li>
+                        <li>(2 навыка передвижения в версии 1.20).</li>
+                    </ul>
+                    
+                    <h3>Артефакты</h3>
+                    <p>Мод вводит 4 набора новой брони, называемой артефактами, которые заменяют часть защиты на дополнительное здоровье и не имеют веса. Для создания артефактов потребуются слёзы гаста и соответствующие типы брони на кузнечном столе.</p>
+                    
+                    <h3>Дополнительные настройки</h3>
+                    <p>Мод добавляет игровые правила, позволяющие:</p>
+                    <ul>
+                        <li>Увеличивать силу мобов по мере удаления от точки спавна.</li>
+                        <li>Мобам с более чем 20 единицами здоровья давать шанс выпадения изумрудов и дополнительного опыта.</li>
+                        <li>Скелетам иметь настраиваемый шанс спавна с каменным оружием ближнего боя.</li>
+                    </ul>
+                </div>
+                
+                <div class="mod-card">
+                    <div class="mod-title">Passive Skill Tree</div>
+                    <div class="mod-info">
+                        <div class="mod-image">
+                            <img src="/images/pst.png" alt="Passive Skill Tree" />
+                        </div>
+                        <div class="mod-details">
+                            <p class="mod-description">Мод, вдохновлённый игрой Path of Exile, добавляет в Minecraft настраиваемое дерево пассивных навыков, позволяющее развивать персонажа по различным направлениям.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Основные возможности</h3>
+                    <p>Система пассивных навыков предоставляет следующие возможности:</p>
+                    <ul>
+                        <li>Набор очков навыков по мере накопления опыта.</li>
+                        <li>Открытие дерева навыков клавишей <code>O</code> (по умолчанию).</li>
+                        <li>Выбор класса персонажа с возможностью последующего перехода к другим классам.</li>
+                        <li>Максимальное количество очков навыков — 85 (можно изменить в настройках).</li>
+                    </ul>
+                    
+                    <h3>Новые механики</h3>
+                    <ul>
+                        <li><strong>Самоцветы</strong>: можно найти в любой руде и вставить в снаряжение на кузнечном столе для получения различных бонусов.</li>
+                        <li><strong>Регенерация здоровья</strong>: медленное восстановление здоровья со временем, потребляющее небольшое количество очков голода.</li>
+                        <li><strong>Шанс уклонения</strong>: вероятность полностью избежать атаки противника.</li>
+                        <li><strong>Шанс блока</strong>: возможность автоматически блокировать атаку противника при наличии щита.</li>
+                        <li><strong>Восстановление здоровья при блоке</strong>: восстановление здоровья при успешном блокировании атаки.</li>
+                        <li><strong>Восстановление здоровья при ударе</strong>: восстановление здоровья при атаке противника.</li>
+                    </ul>
+                    
+                </div>
+                
+                
+                <div class="mod-card">
+                    <div class="mod-title">Infernal Mobs</div>
+                    <div class="mod-info">
+                        <div class="mod-image">
+                            <img src="/images/im.png" alt="Infernal Mobs" />
+                        </div>
+                        <div class="mod-details">
+                            <p class="mod-description">Добавляет усиленных мобов с особыми способностями.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Особые мобы</h3>
+                    <p>Случайные мобы могут появиться с особыми свойствами:</p>
+                    <ul>
+                        <li><strong>Огненные</strong> - поджигают игрока при атаке</li>
+                        <li><strong>Регенерирующие</strong> - быстро восстанавливают здоровье</li>
+                        <li><strong>Отравляющие</strong> - отравляют при атаке</li>
+                        <li><strong>Невидимые</strong> - частично или полностью невидимые</li>
+                        <li><strong>Телепортирующиеся</strong> - могут телепортироваться к игроку</li>
+                    </ul>
+                    
+                    <h3>Редкость и награды</h3>
+                    <p>Инфернальные мобы делятся на редкости (обычные, редкие, элитные, ультра). Чем выше редкость, тем больше особых свойств и лучше награда за победу.</p>
+                </div>
+                
+                <div class="mod-card">
+                    <div class="mod-title">Player Revive</div>
+                    <div class="mod-info">
+                        <div class="mod-image">
+                            <img src="/images/pr.png" alt="Player Revive" />
+                        </div>
+                        <div class="mod-details">
+                            <p class="mod-description">Позволяет игрокам воскрешать друг друга после смерти.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Система возрождения</h3>
+                    <ul>
+                        <li>После смерти игрок не возрождается сразу, а входит в состояние "при смерти"</li>
+                        <li>Другие игроки могут возродить его, используя определённые предметы</li>
+                        <li>Если никто не поможет за определённое время, игрок все равно умрет</li>
+                        <li>Можно создать специальные предметы для быстрого возрождения</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div id="boss-mods" class="tab-content">
+                <h1>Боссы</h1>
+                <p>Моды, добавляющие новых боссов и испытания в мир игры.</p>
+                
+                <div class="mod-card">
+                    <div class="mod-title">Dawn of Larston: Time Paradox</div>
+                    <div class="mod-info">
+                        <div class="mod-image">
+                            <img src="/images/dol.png" alt="Dawn of Larston: Time Paradox" />
+                        </div>
+                        <div class="mod-details">
+                            <p class="mod-description">Мод добавляет новое измерение "Старое Поле Боя" с подземельем, боссом и особым видом зомби.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Новое измерение: Старое Поле Битвы Ларстона</h3>
+                    <p>Исследуйте таинственное измерение, наполненное древними замками, опасными врагами и ценными сокровищами:</p>
+                    <ul>
+                        <li>Доступ осуществляется через портал, построенный из кварцевых столбов по аналогии с порталом в Нижний мир.</li>
+                        <li>В центре измерения находится массивное подземелье с многочисленными спаунерами и ценными ресурсами.</li>
+                    </ul>
+                    
+                    <h3>Призываемый босс</h3>
+                    <p>В сердце подземелья вас ожидает эпическая битва:</p>
+                    <ul>
+                        <li>Босс призывается с помощью часов, размещённых на специальной подставке в тронном зале на втором этаже замка.</li>
+                        <li>Сражение сопровождается уникальным саундтреком, усиливающим атмосферу битвы.</li>
+                        <li>После победы вы получите Временные Слитки — редкий и магический ресурс для крафта.</li>
+                    </ul>
+                    
+                    <h3>Новый вид зомби</h3>
+                    <p>Будьте осторожны с зомби в жёлтых одеяниях, охраняющими тайны прошлого:</p>
+                    <ul>
+                        <li>С небольшой вероятностью они могут дропнуть специальный активатор портала, необходимый для доступа в Старое Поле Боя.</li>
+                    </ul>
+                    
+                    <h3>Крафт из Временных Слитков</h3>
+                    <p>Используйте полученные Временные Слитки для создания уникальных предметов:</p>
+                    <ul>
+                        <li><strong>Комплект Временной Брони</strong> — обеспечивает повышенную защиту.</li>
+                        <li><strong>Временная Кирка</strong> — инструмент, ускоряющий добычу блоков.</li>
+                        <li><strong>Временной Меч</strong> — позволяет телепортироваться назад во времени, избегая опасности или застигнув врагов врасплох.</li>
+                    </ul>
+                </div>
+            
+                
+                <div class="mod-card">
+                    <div class="mod-title">Bosses of Mass Destruction</div>
+                    <div class="mod-info">
+                        <div class="mod-image">
+                            <img src="/images/bomd.png" alt="Bosses of Mass Destruction" />
+                        </div>
+                        <div class="mod-details">
+                            <p class="mod-description">Добавляет уникальных и эпичных боссов, каждый из которых обитает в своём измерении и требует особого способа вызова.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Боссы</h3>
+                    <ul>
+                        <li><strong>Nether Gauntlet (Адский кулак)</strong> — древний магический механизм, пробуждаемый в структурах Нижнего мира.</li>
+                        <li><strong>Night Lich (Ночной Лич)</strong> — нежить-маг, вызывается в ледяных башнях в снежных биомах.</li>
+                        <li><strong>Obsidilith (Обсидилит)</strong> — таинственное существо Края, пробуждаемое в редких структурах на островах.</li>
+                        <li><strong>Void Blossom (Пустотный цветок)</strong> — агрессивное растение, обитающее в пещерах глубоко под землёй.</li>
+                    </ul>
+                    
+                    <h3>Призыв боссов</h3>
+                    <p>Каждый босс призывается по-своему, в зависимости от структуры и измерения:</p>
+                    <ul>
+                        <li>Nether Gauntlet — активируется разрушением блока с глазом в центре структуры.</li>
+                        <li>Night Lich — призывается размещением Soul Stars на алтарях внутри башни.</li>
+                        <li>Obsidilith — вызывается установкой Ока Края на алтарь.</li>
+                        <li>Void Blossom — встречается в редких подземных биомах, приманивается через пустотные лилии.</li>
+                    </ul>
+                </div>
+                
+                
+                <div class="mod-card">
+                    <div class="mod-title">L'Ender Cataclysm</div>
+                    <div class="mod-info">
+                        <div class="mod-image">
+                            <img src="/images/lec.png" alt="L'Ender Cataclysm" />
+                        </div>
+                        <div class="mod-details">
+                            <p class="mod-description">Добавляет в игру сложные подземелья, уникальных боссов и мощные предметы, вдохновлённые Minecraft Dungeons и Dark Souls.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Новые боссы</h3>
+                    <ul>
+                        <li><strong>Netherite Monstrosity</strong> — массивный голем, обитающий в Нижнем мире, использующий разрушительные атаки в ближнем бою и огненные снаряды.</li>
+                        <li><strong>Ender Guardian</strong> — могущественный страж, найденный в Руинах Цитадели в Крае, владеющий атаками с использованием энергии Пустоты.</li>
+                        <li><strong>Leviathan</strong> — гигантское морское существо, обитающее в Затонувшем городе, обладающее мощными атаками и способностью призывать миньонов.</li>
+                        <li><strong>Ignis</strong> — огненный босс, находящийся в Древней Фабрике, использующий пламя и магические атаки.</li>
+                        <li><strong>The Harbinger</strong> — таинственный и опасный босс, владеющий разрушительными атаками и магией.</li>
+                    </ul>
+                    
+                    <h3>Подземелья и структуры</h3>
+                    <p>Мод добавляет различные подземелья и структуры, каждое из которых населено уникальными мобами и содержит ценные награды:</p>
+                    <ul>
+                        <li><strong>Ruined Citadel</strong> — разрушенная цитадель в Крае, где обитает Ender Guardian.</li>
+                        <li><strong>Sunken City</strong> — затонувший город, дом Leviathan.</li>
+                        <li><strong>Ancient Factory</strong> — древняя фабрика, где можно встретить Ignis.</li>
+                        <li><strong>Burning Arena</strong> — арена в Нижнем мире, место обитания Netherite Monstrosity.</li>
+                    </ul>
+                </div>
+                
+                
+                <div class="mod-card">
+                    <div class="mod-title">Aquamirae</div>
+                    <div class="mod-info">
+                        <div class="mod-image">
+                            <img src="/images/aq.png" alt="Aquamirae" />
+                        </div>
+                        <div class="mod-details">
+                            <p class="mod-description">Добавляет в игру уникальный ледяной биом, новые структуры, опасных существ и мощного босса.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Ледяной лабиринт</h3>
+                    <p>Мод вводит новый биом — Ледяной лабиринт, обогащая подводный мир:</p>
+                    <ul>
+                        <li>Уникальная генерация с лабиринтом на поверхности и замёрзшим океаном подо льдом.</li>
+                        <li>Совместимость с другими модами, так как биом генерируется в стандартном глубоком замёрзшем океане.</li>
+                        <li>Разнообразные структуры для исследования и выживания.</li>
+                        <li>Уникальная атмосфера с фоновыми звуками, музыкой и частицами.</li>
+                    </ul>
+                    
+                    <h3>Опасные существа</h3>
+                    <p>В глубинах Ледяного лабиринта обитают различные опасные существа:</p>
+                    <ul>
+                        <li><strong>Удильщик</strong> — хищная рыба, привлекающая добычу светящимся отростком.</li>
+                        <li><strong>Мать лабиринта</strong> — огромное существо, охраняющее свои владения.</li>
+                        <li><strong>Угорь</strong> — длинное и быстрое существо, атакующее неожиданно.</li>
+                        <li><strong>Замученная душа</strong> — призрачное создание, блуждающее в глубинах.</li>
+                        <li><strong>Золотая моль</strong> — редкое существо, обладающее ценными ресурсами.</li>
+                    </ul>
+                    
+                    <h3>Босс: Призрак капитана Корнелии</h3>
+                    <p>В Ледяном лабиринте можно встретить мощного босса:</p>
+                    <ul>
+                        <li><strong>Призрак капитана Корнелии</strong> — обладает сложной анимацией и смертоносными способностями.</li>
+                        <li>Для вызова необходимо использовать Раковину-Рог, полученную от капитана разбойников на замёрзших кораблях.</li>
+                        <li>После победы можно получить уникальные награды, включая Шлем с тремя болтами и Замороженные ключи.</li>
+                    </ul>
+                    
+                    <h3>Уникальное снаряжение</h3>
+                    <p>Мод добавляет новое снаряжение для исследования подводного мира:</p>
+                    <ul>
+                        <li><strong>Комплект "Три болта"</strong> — восстанавливает запас кислорода при его исчерпании.</li>
+                        <li><strong>Комплект "Ужасный"</strong> — увеличивает скорость плавания и накладывает яд на атакующих.</li>
+                        <li>Разнообразное оружие с уникальными способностями, эффективное против водных существ.</li>
+                        <li>Пищевые продукты, расходуемые предметы и декоративные элементы.</li>
+                    </ul>
+                </div>
+            </div>
+                
+            
+            <div id="utility-mods" class="tab-content">
+                <h1>Утилиты и вспомогательные моды</h1>
+                <p>Моды, улучшающие игровой процесс и добавляющие полезные функции.</p>
+                
+                <div class="mod-card">
+                    <div class="mod-title">FTB Chunks</div>
+                    <div class="mod-info">
+                        <div class="mod-image">
+                            <img src="/images/ftbch.png" alt="FTB Chunks" />
+                        </div>
+                        <div class="mod-details">
+                            <p class="mod-description">Система защиты территории (привата).</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Основные возможности</h3>
+                    <ul>
+                        <li><strong>Приват территории</strong> - защита ваших построек от других игроков</li>
+                        <li><strong>Карта исследований</strong> - визуальное отображение исследованных территорий</li>
+                        <li><strong>Точки интереса</strong> - отметки важных мест на карте</li>
+                    </ul>
+                    
+                    <h3>Использование</h3>
+                    <p>Для работы с FTB Chunks:</p>
+                    <ul>
+                        <li>Нажмите <code>M</code> для открытия карты</li>
+                        <li>Используйте <code>ЛКМ</code> для привата чанка (открыв менеджер чанков)</li>
+                        <li>Нажмите <code>~</code> для управления командами и установки настроек доступа</li>
+                    </ul>
+                </div>
+                
+                <div class="mod-card">
+                    <div class="mod-title">FTB Essentials</div>
+                    <div class="mod-info">
+                        <div class="mod-image">
+                            <img src="/images/ftbe.png" alt="FTB Essentials" />
+                        </div>
+                        <div class="mod-details">
+                            <p class="mod-description">Базовые команды и функции для удобства игры.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Основные команды</h3>
+                    <ul>
+                        <li><code>/home</code> - система домашних точек</li>
+                        <li><code>/tpa</code> - телепортация к игрокам</li>
+                        <li><code>/back</code> - возврат на место смерти</li>
+                        <li><code>/spawn</code> - телепортация на спавн</li>
+                        <li><code>/warp</code> - система общественных варпов</li>
+                    </ul>
+                    
+                    <h3>Дополнительные функции</h3>
+                    <ul>
+                        <li><strong>Система приватных сообщений</strong> - <code>/msg</code>, <code>/r</code></li>
+                        <li><strong>Игнорирование игроков</strong> - <code>/ignore</code></li>
+                    </ul>
+                </div>
+                
+                <div class="mod-card">
+                    <div class="mod-title">FTB Ranks</div>
+                    <div class="mod-info">
+                        <div class="mod-image">
+                            <img src="/images/ftbr.png" alt="FTB Ranks" />
+                        </div>
+                        <div class="mod-details">
+                            <p class="mod-description">Система рангов и привилегий для игроков.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Система рангов</h3>
+                    <p>На сервере действует следующая система рангов:</p>
+                    <ul>
+                        <li><strong>Новичок</strong> - базовый ранг для новых игроков</li>
+                        <li><strong>Искатель</strong> - получается после выполнения начальных квестов</li>
+                        <li><strong>Воин</strong> - присваивается за победу над определёнными боссами</li>
+                        <li><strong>Легенда</strong> - высший ранг для опытных игроков</li>
+                    </ul>
+                    
+                    <h3>Привилегии рангов</h3>
+                    <p>Каждый ранг открывает новые возможности:</p>
+                    <ul>
+                        <li>Увеличение лимита привата территории</li>
+                        <li>Дополнительные команды и функции</li>
+                        <li>Доступ к эксклюзивным китам</li>
+                        <li>Специальные префиксы в чате</li>
+                        <li>Увеличение количества точек дома</li>
+                    </ul>
+                </div>
+                
+                <div class="mod-card">
+                    <div class="mod-title">Just Enough Items (JEI)</div>
+                    <div class="mod-info">
+                        <div class="mod-image">
+                            <img src="/images/jei.png" alt="JEI" />
+                        </div>
+                        <div class="mod-details">
+                            <p class="mod-description">Система просмотра рецептов и управления предметами.</p>
+                        </div>
+                    </div>
+                    
+                    <h3>Использование JEI</h3>
+                    <ul>
+                        <li><code>R</code> при наведении на предмет - просмотр рецепта создания</li>
+                        <li><code>U</code> при наведении на предмет - просмотр применения предмета</li>
+                        <li>Поиск предметов в строке внизу интерфейса</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div id="installation" class="tab-content">
+                <h1>Установка модпака</h1>
+                <p>Подробная инструкция по установке модпака.</p>
+                
+                <h2>Системные требования</h2>
+                <ul>
+                    <li><strong>Процессор:</strong> Intel Core i3 / AMD Ryzen 3 или выше</li>
+                    <li><strong>Оперативная память:</strong> Минимум 4 ГБ (рекомендуется 6 ГБ или больше)</li>
+                    <li><strong>Видеокарта:</strong> для игры с шейдерами - GTX 970 / без - любая совместимая видеокарта</li>
+                    <li><strong>Место на диске:</strong> Минимум 2 ГБ свободного места</li>
+                </ul>
+                
+                <h2>Установка при помощи лаунчера</h2>
+                <ol>
+                    <li>Скачайте и установите последнюю версию лаунчера Dawn of Larston по ссылке: https://github.com/fen417/Dawn-of-Larston_Launcher/releases</li>
+                    <li>Распакуйте архив в любую удобную папку (обратите внимание, что клиет игры буде установлен в ту же папку) </li>
+                    <li>Запустите MinecraftLauncher.exe, после первого запуска лаунчер сам создаст ярлык на рабочем столе</li>
+                    <li>Нажмите "Установить игру" и дождитесь завершения загрузки</li>
+                </ol>
+                
+                
+                <h2>Частые проблемы</h2>
+                <ul>
+                    <li><strong>Не хватает памяти:</strong> Увеличьте выделенную память Java в настройках лаунчера</li>
+                    <li><strong>Не подключается к серверу:</strong> Нажмите "Вернуться в главно меню" и подключитесь ещё раз</li>
+                    <li><strong>Мало фпс, лаги, фризы:</strong> Отключите шейдеры в настройках игры, в настройках мода Distant Horizons отключите все пункты в главном окне</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="container">
+        <p>© 2025 Вики сервера 'Dawn of Larston' Minecraft Forge 1.20.1. Все права защищены.</p>
+    </footer>
+    
+    <script>
+        function openTab(tabName) {
+    // Скрываем все вкладки
+    const tabContents = document.getElementsByClassName("tab-content");
+    for (let i = 0; i < tabContents.length; i++) {
+        tabContents[i].classList.remove("active");
+    }
+    
+    // Убираем активный класс у кнопок
+    const tabButtons = document.getElementsByClassName("tab-btn");
+    for (let i = 0; i < tabButtons.length; i++) {
+        tabButtons[i].classList.remove("active");
+    }
+    
+    // Показываем выбранную вкладку
+    document.getElementById(tabName).classList.add("active");
+    
+    // Добавляем активный класс нажатой кнопке
+    for (let i = 0; i < tabButtons.length; i++) {
+        if (tabButtons[i].getAttribute("onclick") === `openTab('${tabName}')`) {
+            tabButtons[i].classList.add("active");
+        }
+    }
+}
+    </script>
+</body>
+
+            
