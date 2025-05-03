@@ -409,6 +409,24 @@
       font-size: 0.9rem;
     }
     
+    /* Счетчик скачиваний */
+    .download-counter {
+      position: relative;
+      margin-top: 1rem;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.9rem;
+      display: inline-block;
+      background-color: rgba(0, 0, 0, 0.3);
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      transition: all 0.3s ease;
+    }
+    
+    .download-counter i {
+      margin-right: 0.5rem;
+      color: var(--secondary);
+    }
+    
     /* Адаптивный дизайн */
     @media (max-width: 768px) {
       .logo {
@@ -456,9 +474,12 @@
     <div class="hero-content">
       <h1 class="logo"><span>RU</span>nturned</h1>
       <p>Полный русификатор для Unturned от fen4 <span class="badge">v0.92</span></p>
-      <button class="download-btn" onclick="alert('Скачивание начнется через несколько секунд...')">
+      <a href="https://github.com/username/repository/raw/main/RUnturned.zip" id="downloadBtn" class="download-btn" onclick="incrementCounter()">
         <i class="fas fa-download"></i> Скачать русификатор
-      </button>
+      </a>
+      <div class="download-counter" id="downloadCounter">
+        <i class="fas fa-users"></i> Скачиваний: <span id="downloadCount">0</span>
+      </div>
     </div>
   </div>
   
@@ -637,6 +658,32 @@
     // Переключение мобильного меню
     function toggleMenu() {
       document.getElementById('navMenu').classList.toggle('active');
+    }
+    
+    // Загрузка сохраненного значения счетчика из localStorage
+    window.onload = function() {
+      const savedCount = localStorage.getItem('downloadCount');
+      if (savedCount) {
+        document.getElementById('downloadCount').textContent = savedCount;
+      }
+    };
+    
+    // Функция для увеличения счетчика скачиваний
+    function incrementCounter() {
+      const counterElement = document.getElementById('downloadCount');
+      let count = parseInt(counterElement.textContent || '0');
+      count++;
+      counterElement.textContent = count;
+      
+      // Сохранение значения в localStorage
+      localStorage.setItem('downloadCount', count);
+      
+      // Анимация счетчика
+      const counter = document.getElementById('downloadCounter');
+      counter.style.transform = 'scale(1.2)';
+      setTimeout(() => {
+        counter.style.transform = 'scale(1)';
+      }, 300);
     }
   </script>
 </body>
