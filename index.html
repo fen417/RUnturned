@@ -427,6 +427,38 @@
       color: var(--secondary);
     }
     
+    /* Иконка обновления для счетчика */
+    .refresh-icon {
+      cursor: pointer;
+      margin-left: 0.5rem;
+      color: var(--gray);
+      transition: all 0.3s ease;
+    }
+    
+    .refresh-icon:hover {
+      color: var(--primary);
+      transform: rotate(180deg);
+    }
+    
+    /* Лоадер для счетчика */
+    .loader {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: var(--secondary);
+      animation: spin 1s linear infinite;
+      margin-left: 0.5rem;
+      vertical-align: middle;
+      display: none;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
     /* Адаптивный дизайн */
     @media (max-width: 768px) {
       .logo {
@@ -474,11 +506,13 @@
     <div class="hero-content">
       <h1 class="logo"><span>RU</span>nturned</h1>
       <p>Русификатор для Unturned от fen4 <span class="badge">v0.93</span></p>
-      <a href="https://github.com/fen417/RUnturned/raw/main/RUnturned-0.93.zip" id="downloadBtn" class="download-btn" onclick="incrementCounter()">
-        <i class="fas fa-download"></i> Скачать русификатор
+      <a href="https://github.com/fen417/RUnturned/releases/latest" id="downloadBtn" class="download-btn">
+        <i class="fas fa-download"></i> Скачать последнюю версию
       </a>
       <div class="download-counter" id="downloadCounter">
-        <i class="fas fa-users"></i> Скачиваний: <span id="downloadCount">0</span>
+        <i class="fas fa-users"></i> Скачиваний с GitHub: <span id="downloadCount">...</span>
+        <i class="fas fa-sync-alt refresh-icon" id="refreshCount" title="Обновить счетчик"></i>
+        <div class="loader" id="countLoader"></div>
       </div>
     </div>
   </div>
@@ -566,7 +600,7 @@
             <div class="step-number">1</div>
             <div class="step-content">
               <div class="step-title">Скачайте архив с русификатором</div>
-              <p>Загрузите последнюю версию русификатора RUnturned с нашего сайта, используя кнопку "Скачать русификатор" выше.</p>
+              <p>Загрузите последнюю версию русификатора RUnturned с нашего сайта, используя кнопку "Скачать последнюю версию" выше или на <a href="https://github.com/fen417/RUnturned/releases" target="_blank">странице релизов GitHub</a>.</p>
             </div>
           </div>
           
@@ -673,31 +707,46 @@
       document.getElementById('navMenu').classList.toggle('active');
     }
     
-    // Загрузка сохраненного значения счетчика из localStorage
-    window.onload = function() {
-      const savedCount = localStorage.getItem('downloadCount');
-      if (savedCount) {
-        document.getElementById('downloadCount').textContent = savedCount;
+    // Функция для получения данных о релизах с GitHub API
+    async function fetchGitHubDownloads() {
+      const countLoader = document.getElementById('countLoader');
+      const downloadCount = document.getElementById('downloadCount');
+      
+      // Показать лоадер
+      countLoader.style.display = 'inline-block';
+      downloadCount.textContent = '...';
+      
+      try {
+        // Получаем все релизы
+        const response = await fetch('https://api.github.com/repos/fen417/RUnturned/releases');
+        const releases = await response.json();
+        
+        // Суммируем количество загрузок из всех релизов
+        let totalDownloads = 0;
+        
+        for (const release of releases) {
+          for (const asset of release.assets) {
+            totalDownloads += asset.download_count;
+          }
+        }
+        
+        // Обновляем счетчик
+        downloadCount.textContent = totalDownloads.toLocaleString();
+      } catch (error) {
+        downloadCount.textContent = 'Ошибка';
+        console.error('Ошибка при загрузке данных с GitHub:', error);
+      } finally {
+        // Скрыть лоадер
+        countLoader.style.display = 'none';
       }
-    };
-    
-    // Функция для увеличения счетчика скачиваний
-    function incrementCounter() {
-      const counterElement = document.getElementById('downloadCount');
-      let count = parseInt(counterElement.textContent || '0');
-      count++;
-      counterElement.textContent = count;
-      
-      // Сохранение значения в localStorage
-      localStorage.setItem('downloadCount', count);
-      
-      // Анимация счетчика
-      const counter = document.getElementById('downloadCounter');
-      counter.style.transform = 'scale(1.2)';
-      setTimeout(() => {
-        counter.style.transform = 'scale(1)';
-      }, 300);
     }
+    
+    // Инициализация при загрузке страницы
+    window.onload = function() {
+      // Загружаем данные о скачиваниях с GitHub
+      fetchGitHubDownloads();
+      
+      // Добавляем обработчик клика на кнопку обновления счетчика
+      document.getElementById('refreshCount').addEventListener('click', fetchGitHubDownloads);
+    };
   </script>
-</body>
-</html>
