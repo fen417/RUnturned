@@ -1,691 +1,4 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>RUnturned — Русификатор для Unturned</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    :root {
-      --primary: #2563eb;
-      --primary-dark: #1d4ed8;
-      --secondary: #10b981;
-      --dark: #18181b;
-      --darker: #111111;
-      --light: #f9fafb;
-      --gray: #6b7280;
-      --accent: #3b82f6;
-    }
-    
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    
-    body {
-      font-family: 'Segoe UI', 'Roboto', sans-serif;
-      background-color: var(--dark);
-      color: var(--light);
-      line-height: 1.6;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-    
-    /* Типографика */
-    h1, h2, h3 {
-      font-weight: 700;
-      line-height: 1.2;
-      margin-bottom: 1rem;
-    }
-    
-    h1 {
-      font-size: 2.5rem;
-    }
-    
-    h2 {
-      font-size: 1.8rem;
-      position: relative;
-      padding-bottom: 0.5rem;
-    }
-    
-    h2:after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      height: 3px;
-      width: 60px;
-      background: var(--secondary);
-    }
-    
-    p {
-      margin-bottom: 1rem;
-    }
-    
-    a {
-      color: var(--accent);
-      text-decoration: none;
-      transition: all 0.3s ease;
-    }
-    
-    a:hover {
-      color: var(--primary);
-    }
-    
-    /* Шапка */
-    .hero {
-      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('img/hero-bg.png') center/cover;
-      padding: 4rem 1rem;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, var(--primary), var(--secondary));
-      z-index: 5;
-    }
-    
-    .hero-content {
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    
-    .logo {
-      font-size: 3.5rem;
-      font-weight: 800;
-      color: var(--light);
-      position: relative;
-      display: inline-block;
-      margin-bottom: 0.5rem;
-    }
-    
-    .logo span {
-      color: var(--primary);
-    }
-    
-    .hero p {
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
-      color: #d1d5db;
-    }
-    
-    .badge {
-      background-color: var(--secondary);
-      color: white;
-      font-size: 0.8rem;
-      padding: 0.25rem 0.5rem;
-      border-radius: 9999px;
-      font-weight: 600;
-      margin-left: 0.5rem;
-      vertical-align: middle;
-    }
-    
-    /* Навигация */
-    .navbar {
-      background-color: var(--darker);
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    
-    .nav-container {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 1rem;
-    }
-    
-    .nav-brand {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--light);
-      padding: 1rem 0;
-    }
-    
-    .nav-brand span {
-      color: var(--primary);
-    }
-    
-    .nav-menu {
-      display: flex;
-      list-style: none;
-    }
-    
-    .nav-btn {
-      background: none;
-      border: none;
-      color: var(--light);
-      padding: 1rem;
-      cursor: pointer;
-      font-size: 1rem;
-      transition: all 0.3s ease;
-      position: relative;
-      font-weight: 500;
-    }
-    
-    .nav-btn:hover {
-      color: var(--primary);
-    }
-    
-    .nav-btn.active {
-      color: var(--primary);
-    }
-    
-    .nav-btn.active::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 1rem;
-      right: 1rem;
-      height: 3px;
-      background-color: var(--primary);
-    }
-    
-    .hamburger {
-      display: none;
-      cursor: pointer;
-      background: none;
-      border: none;
-      color: var(--light);
-      font-size: 1.5rem;
-    }
-    
-    /* Основной контент */
-    main {
-      flex: 1;
-      background-color: var(--darker);
-      padding: 2rem 1rem;
-    }
-    
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    
-    .content {
-      display: none;
-      background: var(--dark);
-      border-radius: 0.5rem;
-      padding: 2rem;
-      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-      margin-bottom: 2rem;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    
-    .content.active {
-      display: block;
-      animation: fadeIn 0.5s ease;
-    }
-    
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    
-    /* Блог */
-    .blog-post {
-      margin-bottom: 2rem;
-      padding-bottom: 2rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    
-    .blog-post:last-child {
-      border-bottom: none;
-      margin-bottom: 0;
-      padding-bottom: 0;
-    }
-    
-    .post-date {
-      color: var(--gray);
-      font-size: 0.9rem;
-      display: flex;
-      align-items: center;
-      margin-bottom: 0.5rem;
-    }
-    
-    .post-date i {
-      margin-right: 0.5rem;
-    }
-    
-    .post-title {
-      font-size: 1.5rem;
-      margin-bottom: 0.5rem;
-    }
-    
-    /* Кнопка поддержки */
-    .support-btn {
-      display: inline-flex;
-      align-items: center;
-      background-color: var(--secondary);
-      color: white;
-      padding: 0.75rem 1.5rem;
-      border-radius: 0.5rem;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      margin-top: 1rem;
-      border: none;
-      cursor: pointer;
-    }
-    
-    .support-btn:hover {
-      background-color: #0d9668;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    }
-    
-    .support-btn i {
-      margin-right: 0.5rem;
-    }
-    
-    /* Гайд по установке */
-    .installation-steps {
-      margin: 2rem 0;
-    }
-    
-    .step {
-      display: flex;
-      margin-bottom: 1.5rem;
-    }
-    
-    .step-number {
-      flex-shrink: 0;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background-color: var(--primary);
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      margin-right: 1rem;
-    }
-    
-    .step-content {
-      flex-grow: 1;
-    }
-    
-    .step-title {
-      font-weight: 600;
-      font-size: 1.2rem;
-      margin-bottom: 0.5rem;
-    }
-    
-    code {
-      background-color: #2d3748;
-      padding: 0.2rem 0.4rem;
-      border-radius: 0.25rem;
-      font-family: monospace;
-      font-size: 0.9rem;
-    }
-    
-    .download-btn {
-      display: inline-flex;
-      align-items: center;
-      background-color: var(--primary);
-      color: white;
-      padding: 0.75rem 1.5rem;
-      border-radius: 0.5rem;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      margin-top: 1rem;
-      border: none;
-      cursor: pointer;
-    }
-    
-    .download-btn:hover {
-      background-color: var(--primary-dark);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-    }
-    
-    .download-btn i {
-      margin-right: 0.5rem;
-    }
-    
-    /* Уведомление */
-    .notification {
-      background-color: rgba(37, 99, 235, 0.1);
-      border-left: 4px solid var(--primary);
-      padding: 1rem;
-      border-radius: 0.25rem;
-      margin: 2rem 0;
-    }
-    
-    .notification-title {
-      font-weight: 600;
-      display: flex;
-      align-items: center;
-      margin-bottom: 0.5rem;
-    }
-    
-    .notification-title i {
-      margin-right: 0.5rem;
-      color: var(--primary);
-    }
-    
-    /* Подвал */
-    footer {
-      background-color: var(--darker);
-      padding: 2rem 1rem;
-      text-align: center;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    
-    .footer-content {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    
-    .social-links {
-      margin: 1rem 0;
-    }
-    
-    .social-links a {
-      color: var(--gray);
-      font-size: 1.5rem;
-      margin: 0 0.5rem;
-      transition: all 0.3s ease;
-    }
-    
-    .social-links a:hover {
-      color: var(--primary);
-    }
-    
-    .copyright {
-      color: var(--gray);
-      font-size: 0.9rem;
-    }
-    
-    /* Счетчик скачиваний */
-    .download-counter {
-      position: relative;
-      margin-top: 1rem;
-      color: rgba(255, 255, 255, 0.7);
-      font-size: 0.9rem;
-      display: inline-block;
-      background-color: rgba(0, 0, 0, 0.3);
-      padding: 0.25rem 0.75rem;
-      border-radius: 9999px;
-      transition: all 0.3s ease;
-    }
-    
-    .download-counter i {
-      margin-right: 0.5rem;
-      color: var(--secondary);
-    }
-    
-    /* Иконка обновления для счетчика */
-    .refresh-icon {
-      cursor: pointer;
-      margin-left: 0.5rem;
-      color: var(--gray);
-      transition: all 0.3s ease;
-    }
-    
-    .refresh-icon:hover {
-      color: var(--primary);
-      transform: rotate(180deg);
-    }
-    
-    /* Лоадер для счетчика */
-    .loader {
-      display: inline-block;
-      width: 12px;
-      height: 12px;
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      border-radius: 50%;
-      border-top-color: var(--secondary);
-      animation: spin 1s linear infinite;
-      margin-left: 0.5rem;
-      vertical-align: middle;
-      display: none;
-    }
-    
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    
-    /* Адаптивный дизайн */
-    @media (max-width: 768px) {
-      .logo {
-        font-size: 2.5rem;
-      }
-      
-      .nav-menu {
-        position: fixed;
-        left: -100%;
-        top: 60px;
-        flex-direction: column;
-        background-color: var(--darker);
-        width: 100%;
-        text-align: center;
-        transition: 0.3s;
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-      }
-      
-      .nav-menu.active {
-        left: 0;
-      }
-      
-      .nav-btn {
-        padding: 1.5rem;
-        width: 100%;
-        display: block;
-      }
-      
-      .hamburger {
-        display: block;
-      }
-      
-      .hero {
-      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('img/hero-bg.png') center/cover;
-      padding: 4rem 1rem;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-  </style>
-</head>
-<body>
-  <!-- Шапка -->
-  <div class="hero">
-    <div class="hero-content">
-      <h1 class="logo"><span>RU</span>nturned</h1>
-      <p>Русификатор для Unturned от fen4 <span class="badge">v0.93</span></p>
-      <a href="https://github.com/fen417/RUnturned/releases/latest" id="downloadBtn" class="download-btn">
-        <i class="fas fa-download"></i> Скачать последнюю версию
-      </a>
-      <div class="download-counter" id="downloadCounter">
-        <i class="fas fa-users"></i> Скачиваний с GitHub: <span id="downloadCount">...</span>
-        <i class="fas fa-sync-alt refresh-icon" id="refreshCount" title="Обновить счетчик"></i>
-        <div class="loader" id="countLoader"></div>
-      </div>
-    </div>
-  </div>
-  
-  <!-- Навигация -->
-  <nav class="navbar">
-    <div class="nav-container">
-      <a href="#" class="nav-brand"><span>RU</span>nturned</a>
-      <button class="hamburger" onclick="toggleMenu()">
-        <i class="fas fa-bars"></i>
-      </button>
-      <div class="nav-menu" id="navMenu">
-        <button class="nav-btn active" onclick="showTab('blog')">
-          <i class="fas fa-newspaper"></i> Блог
-        </button>
-        <button class="nav-btn" onclick="showTab('guide')">
-          <i class="fas fa-book"></i> Гайд по установке
-        </button>
-        <button class="nav-btn" onclick="showTab('about')">
-          <i class="fas fa-info-circle"></i> О проекте
-        </button>
-      </div>
-    </div>
-  </nav>
-  
-  <!-- Основной контент -->
-  <main>
-    <div class="container">
-      <!-- Блог -->
-      <div id="blog" class="content active">
-        <h2>Новости разработки</h2>
-
-        <div class="blog-post">
-  <div class="post-date">
-    <i class="far fa-calendar-alt"></i> 03.05.2025 
-  </div>
-  <h3 class="post-title">Вышел тестовый выпуск RUnturned 0.93 для Unturned 3.25.4.0</h3>
-  <p>Основные изменения и улучшения:</p>
-  <p>- Переведены все диалоги с NPC<br>
-    - Переведены все квесты с карты Russia<br>
-    - Добавлен установщик для автоустановки перевода NPC в нужную папку<br>
-    - Переведена часть предметов
-  </p>
-</div>
-
-<div class="blog-post">
-          <div class="post-date">
-            <i class="far fa-calendar-alt"></i> 03.05.2025
-          </div>
-          <h3 class="post-title">Перевод NPC, квестов и диалогов практически закончен</h3>
-          <p>В данный момент завершён полностью перевод имён NPC, диалогов и квестов. В процессе диалоги с NPC-торговцами и параллельно ведётся перевеод названий и описаний предметов.</p>
-          <a href="img/post2.png" target="_blank" title="Открыть изображение в полном размере">
-            <img src="img/post2.png" alt="Скриншот перевода NPC и диалогов" style="width: 100%; max-width: 800px; height: auto; object-fit: contain; border-radius: 0.5rem; margin-top: 1rem; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); cursor: pointer; transition: transform 0.3s ease, box-shadow 0.3s ease;">
-          </a>
-        </div>
-        
-<div class="blog-post">
-  <div class="post-date">
-    <i class="far fa-calendar-alt"></i> 02.05.2025
-  </div>
-  <h3 class="post-title">Вышел RUnturned 0.92 в мастерской стим для Unturned 3.25.4.0</h3>
-  <p>Основные изменения и улучшения:</p>
-  <p>- Переведено всё, что связано с меню "Играть" и меню "Выжившие"</p>
-  <p>Изменения с версий 0.91 и 0.90:</p>
-  <p>UPDATE v0.91:</p>
-  <p>- Переведён редактор карт<br>
-  - Мелкие исправления ошибок</p>
-  <p>UPDATE v0.9:</p>
-  <p>- Восстановлены все отсутствующие ключи<br>
-  - Начат постепенный перевод отсутствующих ключей</p>
-</div>
-        
-        
-        
-
-      </div>
-      
-      <!-- Гайд по установке -->
-      <div id="guide" class="content">
-        <h2>Как установить русификатор</h2>
-        <p>Установка русификатора RUnturned проста и займет всего несколько минут. Следуйте инструкциям ниже:</p>
-        
-        <div class="installation-steps">
-          <div class="step">
-            <div class="step-number">1</div>
-            <div class="step-content">
-              <div class="step-title">Скачайте архив с русификатором</div>
-              <p>Загрузите последнюю версию русификатора RUnturned с нашего сайта, используя кнопку "Скачать последнюю версию" выше или на <a href="https://github.com/fen417/RUnturned/releases" target="_blank">странице релизов GitHub</a>.</p>
-            </div>
-          </div>
-          
-          <div class="step">
-            <div class="step-number">2</div>
-            <div class="step-content">
-              <div class="step-title">Распакуйте</div>
-              <p>Распакуйте архив в любое место</p>
-            </div>
-          </div>
-          
-          <div class="step">
-            <div class="step-number">3</div>
-            <div class="step-content">
-              <div class="step-title">Запустите RUnturned.exe</div>
-              <p>Запустите RUnturned.exe и укажите в нём папку с установленной игрой. Инсталлятор сам установит все необходимые файлы.</p>
-            </div>
-          </div>
-          
-          <div class="step">
-            <div class="step-number">4</div>
-            <div class="step-content">
-              <div class="step-title">Запустите игру</div>
-              <p>Запустите Unturned через Steam. Весь интерфейс игры должен быть на русском языке.</p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="notification">
-          <div class="notification-title">
-            <i class="fas fa-exclamation-triangle"></i> Обратите внимание
-          </div>
-          <p>Рекомендуется создать резервную копию оригинальных файлов игры перед установкой русификатора. Так вы сможете вернуться к английской версии в случае проблем.</p>
-          <p>Если у вас возникли трудности с установкой, напишите мне (fen4) на форуме или в Telegram.</p>
-        </div>
-      </div>
-      
-      <!-- О проекте -->
-      <div id="about" class="content">
-        <h2>О проекте RUnturned</h2>
-        <p>RUnturned — это некоммерческий проект по созданию качественного русификатора для популярной игры Unturned. Наша цель — сделать игру более доступной для русскоязычных игроков с полным и точным переводом всех элементов игры.</p>
-        
-        <h3>История проекта</h3>
-        <p>Проект был начат в январе 2018 года игроком под ником fen4. В то время существовал один неоконченный и крайне неправильный перевод и было принято решение создать свой - так и родился RUnturned. В конце 2019 года для русификатора перестали выходить обновления. Теперь, в 2025 году снова ведётся работа над переводом.</p>
-        
-        <h3>Особенности русификатора:</h3>
-        <ul style="margin-left: 2rem; margin-bottom: 1rem;">
-          <li>Полный перевод интерфейса игры</li>
-          <li>Перевод всех предметов и их описаний</li>
-          <li>Перевод диалогов и квестов</li>
-          <li>Регулярные обновления</li>
-          <li>Поддержка актуальных версий игры</li>
-        </ul>
-        
-        <h3>Связаться с автором</h3>
-        <p>Если у вас есть вопросы, предложения или вы хотите помочь с проектом, свяжитесь со мной через:</p>
-        <ul style="margin-left: 2rem; margin-bottom: 2rem;">
-          <li>Telegram: <a href="https://t.me/johnfender17" target="_blank">@johnfender17</a></li>
-          <li>Steam: <a href="https://steamcommunity.com/id/Johnfender17/" target="_blank">Johnfender17</a></li>
-        </ul>
-        
-        <h3>Поддержать проект</h3>
-        <p>Разработка и поддержка русификатора требует времени и усилий. Если вам нравится наша работа и вы хотите поддержать проект финансово, вы можете сделать это по ссылке ниже:</p>
-        <a href="https://www.donationalerts.com/r/johnfender17" target="_blank" class="support-btn">
-          <i class="fas fa-heart"></i> Поддержать проект
-        </a>
-        <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--gray);">Любая помощь очень ценна для нас и позволит продолжать работу над улучшением русификатора.</p>
-      </div>
-    </div>
-  </main>
-  
-  <!-- Подвал -->
-  <footer>
-    <div class="footer-content">
-      <div class="social-links">
-        <a href="https://steamcommunity.com/id/Johnfender17/" target="_blank" title="Steam"><i class="fab fa-steam"></i></a>
-        <a href="https://t.me/johnfender17" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a>
-      </div>
-      <div class="copyright">
-        &copy; 2025 fen4 | RUnturned | Unturned является собственностью Smartly Dressed Games
-      </div>
-    </div>
-  </footer>
-  
-  <script>
+<script>
     // Показать выбранную вкладку
     function showTab(id) {
       // Скрыть все вкладки и убрать класс active у всех кнопок
@@ -705,6 +18,28 @@
     // Переключение мобильного меню
     function toggleMenu() {
       document.getElementById('navMenu').classList.toggle('active');
+    }
+    
+    // Функция для получения прямой ссылки на скачивание последнего релиза
+    async function getLatestReleaseDownloadUrl() {
+      try {
+        // Получаем последний релиз
+        const response = await fetch('https://api.github.com/repos/fen417/RUnturned/releases/latest');
+        const release = await response.json();
+        
+        // Проверяем, есть ли файлы для скачивания
+        if (release.assets && release.assets.length > 0) {
+          // Берем первый файл (или можно добавить логику выбора конкретного файла)
+          return release.assets[0].browser_download_url;
+        } else {
+          // Если файлов нет, возвращаем ссылку на страницу релизов
+          return release.html_url;
+        }
+      } catch (error) {
+        console.error('Ошибка при получении данных о последнем релизе:', error);
+        // В случае ошибки возвращаем ссылку на все релизы
+        return 'https://github.com/fen417/RUnturned/releases';
+      }
     }
     
     // Функция для получения данных о релизах с GitHub API
@@ -741,6 +76,37 @@
       }
     }
     
+    // Функция для скачивания последнего релиза
+    async function downloadLatestRelease() {
+      const downloadBtn = document.getElementById('downloadBtn');
+      const originalText = downloadBtn.innerHTML;
+      
+      // Изменяем текст кнопки на индикатор загрузки
+      downloadBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Подготовка скачивания...';
+      downloadBtn.style.pointerEvents = 'none';
+      
+      try {
+        // Получаем URL для скачивания
+        const downloadUrl = await getLatestReleaseDownloadUrl();
+        
+        // Восстанавливаем текст кнопки
+        downloadBtn.innerHTML = originalText;
+        downloadBtn.style.pointerEvents = 'auto';
+        
+        // Перенаправляем пользователя на скачивание
+        window.location.href = downloadUrl;
+      } catch (error) {
+        console.error('Ошибка при подготовке скачивания:', error);
+        
+        // Восстанавливаем текст кнопки в случае ошибки
+        downloadBtn.innerHTML = originalText;
+        downloadBtn.style.pointerEvents = 'auto';
+        
+        // Перенаправляем на страницу релизов
+        window.location.href = 'https://github.com/fen417/RUnturned/releases/latest';
+      }
+    }
+    
     // Инициализация при загрузке страницы
     window.onload = function() {
       // Загружаем данные о скачиваниях с GitHub
@@ -748,5 +114,10 @@
       
       // Добавляем обработчик клика на кнопку обновления счетчика
       document.getElementById('refreshCount').addEventListener('click', fetchGitHubDownloads);
+      
+      // Добавляем обработчик клика на кнопку скачивания
+      document.getElementById('downloadBtn').addEventListener('click', function(e) {
+        e.preventDefault();
+        downloadLatestRelease();
+      });
     };
-  </script>
